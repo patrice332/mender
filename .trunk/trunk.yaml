@@ -16,12 +16,13 @@ runtimes:
     - python@3.10.8
 # This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
 lint:
+  disabled:
+    - prettier
   enabled:
     - biome@2.2.5
     - checkov@3.2.473
     - git-diff-check
     - osv-scanner@2.2.3
-    - prettier@3.6.2
     - trufflehog@3.90.8
     - yamllint@1.37.1
 actions:
