@@ -1,6 +1,6 @@
 import { RootConstruct } from "constructs";
 import { describe, expect, it, vi } from "vitest";
-import { createCluster } from "../src/cluster";
+import { createCluster } from "../../src/internal/cluster";
 
 describe("Cluster", () => {
   it("should create a cluster", async () => {
