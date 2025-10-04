@@ -1,0 +1,41 @@
+name: Pr tests
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+    - trunk-merge/**
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    name: Run tests
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Instal Dependencies
+        run: pnpm install
+
+      - name: Run tests
+        id: unit-tests
+        # Execute your tests.
+        run: pnpm run -r test
+        continue-on-error: true
+
+      - name: Upload results
+        uses: trunk-io/analytics-uploader@v1
+        with:
+          junit-paths: "**/junit.xml"
+          org-slug: pat-trunk-org
+          token: ${{ secrets.TRUNK_TOKEN }}
+          previous-step-outcome: ${{ steps.unit-tests.outcome }}
