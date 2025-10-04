@@ -1,0 +1,5 @@
+{
+	"editor.defaultFormatter": "trunk.io",
+	"workbench.editor.enablePreview": false,
+	"workbench.editor.enablePreviewFromQuickOpen": false
+}
