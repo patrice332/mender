@@ -26,7 +26,18 @@ lint:
     - yamllint@1.37.1
 actions:
   enabled:
+    - syncpack-pre-commit
     - trunk-announce
     - trunk-check-pre-push
     - trunk-fmt-pre-commit
     - trunk-upgrade-available
+  definitions:
+    - id: syncpack-pre-commit
+      description: Run 'syncpack' whenever you run 'git commity'
+      display_name: Syncpack pre-push
+      run: pnpm syncpack fix-mismatches && pnpm i
+      runtime: node
+      interactive: optional
+      triggers:
+        - git_hooks: [pre-commit]
+      notify_on_error: false
