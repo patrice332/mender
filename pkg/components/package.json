@@ -1,0 +1,17 @@
+{
+  "name": "@pkg/components",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@pkg/configs": "workspace:*",
+    "testcontainers": "11.7.1"
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "1.4.0",
+    "@testcontainers/k3s": "11.7.1",
+    "constructs": "10.4.2"
+  }
+}

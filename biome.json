@@ -1,9 +1,15 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "includes": ["pkg/**/*"]
+  },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "nursery": {
+        "useConsistentArrowReturn": "error"
+      }
     }
   },
   "formatter": {

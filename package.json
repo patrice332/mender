@@ -3,6 +3,20 @@
     "pnpm": "10.18.0"
   },
   "devDependencies": {
-    "syncpack": "13.0.4"
+    "@biomejs/biome": "2.2.5",
+    "@tsconfig/node24": "24.0.1",
+    "@tsconfig/strictest": "2.0.6",
+    "syncpack": "13.0.4",
+    "typescript": "5.9.3",
+    "vitest": "3.2.4"
+  },
+  "pnpm": {
+    "packageExtensions": {
+      "@testcontainers/k3s": {
+        "dependencies": {
+          "tar-stream": "3.1.7"
+        }
+      }
+    }
   }
 }
