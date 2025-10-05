@@ -6,9 +6,7 @@ import { z } from "zod/v4";
 export { ImagePullPolicy } from "cdk8s-plus-32";
 
 const manifestSchema = z.object({
-  metadata: z.object({
-    name: z.string(),
-  }),
+  metadata: z.object().optional(),
   apiVersion: z.string(),
   kind: z.string(),
 });
@@ -59,7 +57,7 @@ export class Project {
 }
 
 export class Namespace extends Construct {
-  private readonly chart: Chart;
+  public readonly chart: Chart;
   public readonly underlying: kplus.Namespace;
   public readonly name: string;
 
@@ -76,26 +74,26 @@ export class Namespace extends Construct {
     this.underlying = new kplus.Namespace(scope, `${scope.node.path.replaceAll("/", "-")}-namespace`, localProps);
     this.name = name;
   }
-
-  public createDeployment(name: string, props: kplus.DeploymentProps): Deployment {
-    return new Deployment(this.chart, this, name, props);
-  }
-
-  public addManifest(props: unknown) {
-    const manifestParsed = manifestSchema.safeParse(props);
-    if (!manifestParsed.success) {
-      throw new Error("Provided manifest is not a valid api object");
-    }
-    return new ApiObject(this.chart, this, manifestParsed.data.metadata.name, manifestParsed.data);
-  }
 }
+
+export const addManifest = (ns: Namespace, name: string, props: unknown) => {
+  const manifestParsed = manifestSchema.safeParse(props);
+  if (!manifestParsed.success) {
+    throw new Error("Provided manifest is not a valid api object");
+  }
+  const manifest = manifestParsed.data;
+  return new ApiObject(ns, name, { ...manifest, metadata: manifest.metadata ?? {} });
+};
+
+export const addDeployment = (ns: Namespace, name: string, props: kplus.DeploymentProps) =>
+  new Deployment(ns, name, props);
 
 export class Deployment extends Construct {
   public readonly underlying: kplus.Deployment;
   public readonly name: string;
 
-  constructor(scope: Chart, namespace: Namespace, name: string, props: kplus.DeploymentProps) {
-    super(scope, name);
+  constructor(namespace: Namespace, name: string, props: kplus.DeploymentProps) {
+    super(namespace.chart, name);
     const localProps: kplus.DeploymentProps = {
       ...props,
       metadata: {
@@ -105,7 +103,7 @@ export class Deployment extends Construct {
       },
     };
     this.underlying = new kplus.Deployment(
-      scope,
+      namespace.chart,
       `${namespace.node.path.replaceAll("/", "-")}-${name}-deployment`,
       localProps,
     );
@@ -116,21 +114,21 @@ export class Deployment extends Construct {
 export class ApiObject extends Construct {
   public readonly underlying: Cdk8sApiObject;
   public readonly name: string;
-
-  constructor(scope: Chart, namespace: Namespace, name: string, props: ApiObjectProps) {
-    super(scope, name);
-    this.name = name;
+  constructor(ns: Namespace, name: string, props: ApiObjectProps) {
+    super(ns, name);
     const localProps: ApiObjectProps = {
       ...props,
       metadata: {
         ...props.metadata,
         name,
-        namespace: namespace.name,
+        namespace: ns.name,
       },
     };
+
+    this.name = name;
     this.underlying = new Cdk8sApiObject(
-      scope,
-      `${namespace.node.path.replaceAll("/", "-")}-${name}-apiobject`,
+      ns.chart,
+      `${ns.node.path.replaceAll("/", "-")}-${name}-apiobject`,
       localProps,
     );
   }
