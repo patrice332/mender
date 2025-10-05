@@ -50,6 +50,9 @@ importers:
       constructs:
         specifier: 10.4.2
         version: 10.4.2
+      zod:
+        specifier: 4.1.11
+        version: 4.1.11
     devDependencies:
       '@pkg/configs':
         specifier: workspace:*
@@ -2119,6 +2122,9 @@ packages:
     resolution: {integrity: sha512-zK7YHHz4ZXpW89AHXUPbQVGKI7uvkd3hzusTdotCg1UxyaVtg0zFJSTfW/Dq5f7OBBVnq6cZIaC8Ti4hb6dtCA==}
     engines: {node: '>= 14'}
 
+  zod@4.1.11:
+    resolution: {integrity: sha512-WPsqwxITS2tzx1bzhIKsEs19ABD5vmCVa4xBo2tq/SrV4RNZtfws1EnCWQXM6yh8bD08a1idvkB5MZSBiZsjwg==}
+
 snapshots:
 
   '@babel/code-frame@7.27.1':
@@ -4171,3 +4177,5 @@ snapshots:
       archiver-utils: 5.0.2
       compress-commons: 6.0.2
       readable-stream: 4.7.0
+
+  zod@4.1.11: {}

@@ -16,6 +16,7 @@
     "@testcontainers/k3s": "11.7.1",
     "cdk8s": "2.70.19",
     "cdk8s-plus-32": "2.4.9",
-    "constructs": "10.4.2"
+    "constructs": "10.4.2",
+    "zod": "4.1.11"
   }
 }
