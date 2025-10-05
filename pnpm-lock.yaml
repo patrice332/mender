@@ -66,6 +66,22 @@ importers:
 
   pkg/configs: {}
 
+  pkg/third_party/istio:
+    dependencies:
+      cdk8s:
+        specifier: 2.70.19
+        version: 2.70.19(constructs@10.4.2)
+      constructs:
+        specifier: 10.4.2
+        version: 10.4.2
+    devDependencies:
+      '@pkg/configs':
+        specifier: workspace:*
+        version: link:../../configs
+      cdk8s-cli:
+        specifier: 2.201.44
+        version: 2.201.44
+
 packages:
 
   '@babel/code-frame@7.27.1':
@@ -1926,8 +1942,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@6.0.0-dev.20251004:
-    resolution: {integrity: sha512-3llKaL8BQl6rUoK7GAwVEjvJm2weUfb9nq1ZEVGJ+6nZ7hH5GcgPp/VWry8w5pFds2NpPr8emzrY7QKS5SAPMg==}
+  typescript@6.0.0-dev.20251005:
+    resolution: {integrity: sha512-KTz4zIPbhB0vQPLuO/uvoZtajqpfDMCC0i/v+5Nf2NwDFpWBLfn6fLeS15R30Vl1H6U3WHGxbv9FnydT2gUcjA==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -2917,7 +2933,7 @@ snapshots:
     dependencies:
       semver: 7.7.2
       shelljs: 0.8.5
-      typescript: 6.0.0-dev.20251004
+      typescript: 6.0.0-dev.20251005
 
   dunder-proto@1.0.1:
     dependencies:
@@ -3996,7 +4012,7 @@ snapshots:
 
   typescript@5.9.3: {}
 
-  typescript@6.0.0-dev.20251004: {}
+  typescript@6.0.0-dev.20251005: {}
 
   undici-types@5.26.5: {}
 

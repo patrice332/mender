@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": ["@pkg/configs/tsconfig.thirdParty.json"],
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "./dist"
+  },
+  "includes": ["src/**/*.ts"]
+}
