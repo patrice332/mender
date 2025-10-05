@@ -1,0 +1,27 @@
+{
+  "name": "@pkg/third-party-k8s",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf dist && rm -rf assets",
+    "get-assets": "mkdir -p assets && cd assets && wget https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.3.0/standard-install.yaml && cd ../",
+    "gen-crds": "cdk8s import --language typescript --output src/crds assets/standard-install.yaml",
+    "gen": "pnpm run gen-crds",
+    "build": "pnpm clean && pnpm get-assets && pnpm run gen && tsc"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./*": "./dist/*"
+  },
+  "devDependencies": {
+    "@pkg/configs": "workspace:*",
+    "cdk8s-cli": "2.201.44"
+  },
+  "mender": {
+    "thirdPartyVersion": "1.3.0"
+  },
+  "dependencies": {
+    "cdk8s": "2.70.19",
+    "constructs": "10.4.2"
+  }
+}
