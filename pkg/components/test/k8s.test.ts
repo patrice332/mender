@@ -35,4 +35,30 @@ describe("k8s", () => {
 
     expect(kplus.synth()).toMatchSnapshot();
   });
+
+  it("can create raw manifests", () => {
+    const kplus = new K8s();
+
+    const project = kplus.createProject("test");
+    const ns = project.createNamespace("test-ns", {
+      metadata: {
+        labels: {
+          "test.label": "value",
+        },
+        annotations: {
+          "test.annotate": "other_value",
+        },
+      },
+    });
+
+    ns.addManifest({
+      metadata: {
+        name: "foo-obj",
+      },
+      apiVersion: "v1",
+      kind: "MyCustomCRD",
+    });
+
+    expect(kplus.synth()).toMatchSnapshot();
+  });
 });
