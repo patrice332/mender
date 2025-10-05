@@ -1,11 +1,4 @@
 {
-  "extends": ["@pkg/configs/tsconfig.json"],
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "target": "ESNext",
-    "strict": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": ["@pkg/configs/tsconfig.json"]
 }
