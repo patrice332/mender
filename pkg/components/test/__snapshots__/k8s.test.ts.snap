@@ -1,0 +1,95 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`k8s > can create a deployment 1`] = `
+[
+  {
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "metadata": {
+      "annotations": {
+        "test.annotate": "other_value",
+      },
+      "labels": {
+        "test.label": "value",
+      },
+      "name": "test-ns",
+    },
+    "spec": {},
+  },
+  {
+    "apiVersion": "apps/v1",
+    "kind": "Deployment",
+    "metadata": {
+      "annotations": {
+        "deploy-annotate": "bar",
+      },
+      "labels": {
+        "deploy-label": "foo",
+      },
+      "name": "test-deploy",
+      "namespace": "test-ns",
+    },
+    "spec": {
+      "minReadySeconds": 0,
+      "progressDeadlineSeconds": 600,
+      "replicas": 2,
+      "revisionHistoryLimit": 10,
+      "selector": {
+        "matchLabels": {
+          "cdk8s.io/metadata.addr": "test-test-test-ns-deployment-c8940b74",
+        },
+      },
+      "strategy": {
+        "rollingUpdate": {
+          "maxSurge": "25%",
+          "maxUnavailable": "25%",
+        },
+        "type": "RollingUpdate",
+      },
+      "template": {
+        "metadata": {
+          "labels": {
+            "cdk8s.io/metadata.addr": "test-test-test-ns-deployment-c8940b74",
+          },
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "image": "test-image:sometag",
+              "imagePullPolicy": "IfNotPresent",
+              "name": "test-container",
+              "resources": {
+                "limits": {
+                  "cpu": "1500m",
+                  "memory": "2048Mi",
+                },
+                "requests": {
+                  "cpu": "1000m",
+                  "memory": "512Mi",
+                },
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "privileged": false,
+                "readOnlyRootFilesystem": true,
+                "runAsNonRoot": true,
+              },
+            },
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "hostNetwork": false,
+          "restartPolicy": "Always",
+          "securityContext": {
+            "fsGroupChangePolicy": "Always",
+            "runAsNonRoot": true,
+          },
+          "setHostnameAsFQDN": false,
+          "shareProcessNamespace": false,
+          "terminationGracePeriodSeconds": 30,
+        },
+      },
+    },
+  },
+]
+`;
