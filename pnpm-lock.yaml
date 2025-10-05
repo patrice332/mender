@@ -23,6 +23,9 @@ importers:
       '@tsconfig/strictest':
         specifier: 2.0.6
         version: 2.0.6
+      '@types/node':
+        specifier: 24.6.2
+        version: 24.6.2
       syncpack:
         specifier: 13.0.4
         version: 13.0.4(typescript@5.9.3)
@@ -67,6 +70,22 @@ importers:
   pkg/configs: {}
 
   pkg/third_party/istio:
+    dependencies:
+      cdk8s:
+        specifier: 2.70.19
+        version: 2.70.19(constructs@10.4.2)
+      constructs:
+        specifier: 10.4.2
+        version: 10.4.2
+    devDependencies:
+      '@pkg/configs':
+        specifier: workspace:*
+        version: link:../../configs
+      cdk8s-cli:
+        specifier: 2.201.44
+        version: 2.201.44
+
+  pkg/third_party/k8s:
     dependencies:
       cdk8s:
         specifier: 2.70.19

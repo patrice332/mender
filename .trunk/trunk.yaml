@@ -24,6 +24,8 @@ lint:
       - pkg/third_party/istio/dist
       - pkg/third_party/istio/src/crds
       - pkg/third_party/istio/src/helm
+      - pkg/third_party/k8s/dist
+      - pkg/third_party/k8s/src/crds
   disabled:
     - checkov
     - prettier
