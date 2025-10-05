@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ImagePullPolicy, K8s } from "../src/k8s";
+import { addDeployment, addManifest, ImagePullPolicy, K8s } from "../src/k8s";
 
 describe("k8s", () => {
   it("can create a deployment", () => {
@@ -15,7 +15,7 @@ describe("k8s", () => {
         },
       },
     });
-    ns.createDeployment("test-deploy", {
+    addDeployment(ns, "test-deploy", {
       metadata: {
         labels: {
           "deploy-label": "foo",
@@ -51,10 +51,7 @@ describe("k8s", () => {
       },
     });
 
-    ns.addManifest({
-      metadata: {
-        name: "foo-obj",
-      },
+    addManifest(ns, "foo-obj", {
       apiVersion: "v1",
       kind: "MyCustomCRD",
     });
