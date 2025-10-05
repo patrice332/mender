@@ -1,0 +1,29 @@
+{
+  "name": "@pkg/third-party-istio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "gen-base-helm": "cdk8s import --language typescript --output src/helm helm:https://istio-release.storage.googleapis.com/charts/base@1.27.1",
+    "gen-istiod-helm": "cdk8s import --language typescript --output src/helm helm:https://istio-release.storage.googleapis.com/charts/istiod@1.27.1",
+    "gen-cni-helm": "cdk8s import --language typescript --output src/helm helm:https://istio-release.storage.googleapis.com/charts/cni@1.27.1",
+    "gen-crds": "cdk8s import --language typescript --output src/crds assets/crd-all.gen.yaml",
+    "gen": "pnpm run gen-crds && pnpm run gen-base-helm && pnpm run gen-istiod-helm && pnpm run gen-cni-helm",
+    "build": "pnpm clean && pnpm run gen && tsc"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./*": "./dist/*"
+  },
+  "devDependencies": {
+    "@pkg/configs": "workspace:*",
+    "cdk8s-cli": "2.201.44"
+  },
+  "mender": {
+    "thirdPartyVersion": "1.27.1"
+  },
+  "dependencies": {
+    "cdk8s": "2.70.19",
+    "constructs": "10.4.2"
+  }
+}
