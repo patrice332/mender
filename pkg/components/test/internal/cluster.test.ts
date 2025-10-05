@@ -1,37 +1,45 @@
-import { RootConstruct } from "constructs";
-import { describe, expect, it, vi } from "vitest";
-import { createCluster } from "../../src/internal/cluster";
+import { afterEach, beforeEach, describe, it, vi } from "vitest";
+import { type Cluster, createCluster } from "../../src/internal/cluster";
 
 describe("Cluster", () => {
+  let cluster: Cluster;
+
+  beforeEach(async () => {
+    cluster = await createCluster();
+  }, 60_000);
+
+  afterEach(async () => {
+    await cluster.close();
+  }, 60_000);
+
   it("should create a cluster", async () => {
-    const construct = new RootConstruct("Cluster");
-    const cluster = await createCluster(construct, "test", { kubernetesVersion: "1.32" });
-    expect(cluster).toBeDefined();
-    const pod = {
-      metadata: {
-        name: "helloworld",
-      },
-      spec: {
-        containers: [
-          {
-            name: "helloworld",
-            image: "testcontainers/helloworld:1.1.0",
-            ports: [
-              {
-                containerPort: 8080,
-              },
-            ],
-            readinessProbe: {
-              tcpSocket: {
-                port: 8080,
+    const client = cluster.coreClient;
+    cluster.coreClient.createNamespacedPod({
+      namespace: "default",
+      body: {
+        metadata: {
+          name: "helloworld",
+        },
+        spec: {
+          containers: [
+            {
+              name: "helloworld",
+              image: "testcontainers/helloworld:1.1.0",
+              ports: [
+                {
+                  containerPort: 8080,
+                },
+              ],
+              readinessProbe: {
+                tcpSocket: {
+                  port: 8080,
+                },
               },
             },
-          },
-        ],
+          ],
+        },
       },
-    };
-    const client = cluster.getClient();
-    await client.createNamespacedPod({ namespace: "default", body: pod });
+    });
 
     await vi.waitFor(async () => {
       const { status } = await client.readNamespacedPodStatus({ namespace: "default", name: "helloworld" });

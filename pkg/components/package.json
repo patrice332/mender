@@ -3,16 +3,19 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "test": "vitest",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@pkg/configs": "workspace:*",
+    "cdk8s-cli": "2.201.44",
     "testcontainers": "11.7.1"
   },
   "dependencies": {
     "@kubernetes/client-node": "1.4.0",
     "@testcontainers/k3s": "11.7.1",
+    "cdk8s": "2.70.19",
+    "cdk8s-plus-32": "2.4.9",
     "constructs": "10.4.2"
   }
 }

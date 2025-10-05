@@ -24,7 +24,7 @@ jobs:
           version: 10
 
       - name: Instal Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Run tests
         id: unit-tests
@@ -58,7 +58,7 @@ jobs:
           version: 10
 
       - name: Instal Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Run typecheck
         id: typecheck
