@@ -26,6 +26,13 @@ lint:
       - pkg/third_party/istio/src/helm
       - pkg/third_party/k8s/dist
       - pkg/third_party/k8s/src/crds
+      - pkg/third_party/knative/serving/assets
+      - pkg/third_party/knative/serving/dist
+      - pkg/third_party/knative/serving/src/crds
+      - pkg/third_party/knative/operator/assets
+      - pkg/third_party/knative/operator/dist
+      - pkg/third_party/knative/operator/src/crds
+      - pkg/third_party/knative/operator/src/helm
   disabled:
     - checkov
     - prettier
