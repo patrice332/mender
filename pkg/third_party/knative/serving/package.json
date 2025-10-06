@@ -1,0 +1,22 @@
+{
+  "name": "@pkg/third-party-knative-serving",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf dist && rm -rf assets",
+    "get-assets": "mkdir -p assets && cd assets && wget https://github.com/knative/serving/releases/download/knative-v1.19.6/serving-crds.yaml && cd ../",
+    "gen": "cdk8s import --language typescript --output src/crds assets/serving-crds.yaml",
+    "build": "pnpm clean && pnpm get-assets && pnpm run gen && tsc"
+  },
+  "devDependencies": {
+    "@pkg/configs": "workspace:*",
+    "cdk8s-cli": "2.201.44"
+  },
+  "mender": {
+    "thirdPartyVersion": "1.19.6"
+  },
+  "dependencies": {
+    "cdk8s": "2.70.19",
+    "constructs": "10.4.2"
+  }
+}

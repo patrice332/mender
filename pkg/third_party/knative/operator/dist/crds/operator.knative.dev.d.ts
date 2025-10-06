@@ -1,0 +1,3374 @@
+import { ApiObject, ApiObjectMetadata, GroupVersionKind } from 'cdk8s';
+import { Construct } from 'constructs';
+/**
+ * Schema for the knativeservings API
+ *
+ * @schema KnativeServing
+ */
+export declare class KnativeServing extends ApiObject {
+    /**
+     * Returns the apiVersion and kind for "KnativeServing"
+     */
+    static readonly GVK: GroupVersionKind;
+    /**
+     * Renders a Kubernetes manifest for "KnativeServing".
+     *
+     * This can be used to inline resource manifests inside other objects (e.g. as templates).
+     *
+     * @param props initialization props
+     */
+    static manifest(props?: KnativeServingProps): any;
+    /**
+     * Defines a "KnativeServing" API object
+     * @param scope the scope in which to define this object
+     * @param id a scope-local name for the object
+     * @param props initialization props
+     */
+    constructor(scope: Construct, id: string, props?: KnativeServingProps);
+    /**
+     * Renders the object to Kubernetes JSON.
+     */
+    toJson(): any;
+}
+/**
+ * Schema for the knativeservings API
+ *
+ * @schema KnativeServing
+ */
+export interface KnativeServingProps {
+    /**
+     * @schema KnativeServing#metadata
+     */
+    readonly metadata?: ApiObjectMetadata;
+    /**
+     * Spec defines the desired state of KnativeServing
+     *
+     * @schema KnativeServing#spec
+     */
+    readonly spec?: KnativeServingSpec;
+}
+/**
+ * Converts an object of type 'KnativeServingProps' to JSON representation.
+ */
+export declare function toJson_KnativeServingProps(obj: KnativeServingProps | undefined): Record<string, any> | undefined;
+/**
+ * Spec defines the desired state of KnativeServing
+ *
+ * @schema KnativeServingSpec
+ */
+export interface KnativeServingSpec {
+    /**
+     * A list of the additional serving manifests, which will be installed by the operator
+     *
+     * @schema KnativeServingSpec#additionalManifests
+     */
+    readonly additionalManifests?: KnativeServingSpecAdditionalManifests[];
+    /**
+     * A means to override the corresponding entries in the upstream configmaps
+     *
+     * @schema KnativeServingSpec#config
+     */
+    readonly config?: {
+        [key: string]: {
+            [key: string]: string;
+        };
+    };
+    /**
+     * Enabling the controller to trust registries with self-signed certificates
+     *
+     * @schema KnativeServingSpec#controller-custom-certs
+     */
+    readonly controllerCustomCerts?: KnativeServingSpecControllerCustomCerts;
+    /**
+     * Allows specification of HA control plane
+     *
+     * @schema KnativeServingSpec#high-availability
+     */
+    readonly highAvailability?: KnativeServingSpecHighAvailability;
+    /**
+     * A mapping of deployment or statefulset name to override
+     *
+     * @schema KnativeServingSpec#workloads
+     */
+    readonly workloads?: KnativeServingSpecWorkloads[];
+    /**
+     * A field of namespace name to override the labels and annotations
+     *
+     * @schema KnativeServingSpec#namespace
+     */
+    readonly namespace?: KnativeServingSpecNamespace;
+    /**
+     * A mapping of deployment name to override
+     *
+     * @schema KnativeServingSpec#deployments
+     */
+    readonly deployments?: KnativeServingSpecDeployments[];
+    /**
+     * A mapping of service name to override
+     *
+     * @schema KnativeServingSpec#services
+     */
+    readonly services?: KnativeServingSpecServices[];
+    /**
+     * A mapping of podDisruptionBudget name to override
+     *
+     * @schema KnativeServingSpec#podDisruptionBudgets
+     */
+    readonly podDisruptionBudgets?: KnativeServingSpecPodDisruptionBudgets[];
+    /**
+     * The ingress configuration for Knative Serving
+     *
+     * @schema KnativeServingSpec#ingress
+     */
+    readonly ingress?: KnativeServingSpecIngress;
+    /**
+     * The security configuration for Knative Serving
+     *
+     * @schema KnativeServingSpec#security
+     */
+    readonly security?: KnativeServingSpecSecurity;
+    /**
+     * A list of serving manifests, which will be installed by the operator
+     *
+     * @schema KnativeServingSpec#manifests
+     */
+    readonly manifests?: KnativeServingSpecManifests[];
+    /**
+     * A means to override the corresponding deployment images in the upstream. This affects both apps/v1.Deployment and caching.internal.knative.dev/v1alpha1.Image.
+     *
+     * @schema KnativeServingSpec#registry
+     */
+    readonly registry?: KnativeServingSpecRegistry;
+    /**
+     * The version of Knative Serving to be installed
+     *
+     * @schema KnativeServingSpec#version
+     */
+    readonly version?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpec' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpec(obj: KnativeServingSpec | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecAdditionalManifests
+ */
+export interface KnativeServingSpecAdditionalManifests {
+    /**
+     * The link of the additional manifest URL
+     *
+     * @schema KnativeServingSpecAdditionalManifests#URL
+     */
+    readonly url?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecAdditionalManifests' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecAdditionalManifests(obj: KnativeServingSpecAdditionalManifests | undefined): Record<string, any> | undefined;
+/**
+ * Enabling the controller to trust registries with self-signed certificates
+ *
+ * @schema KnativeServingSpecControllerCustomCerts
+ */
+export interface KnativeServingSpecControllerCustomCerts {
+    /**
+     * The name of the ConfigMap or Secret
+     *
+     * @schema KnativeServingSpecControllerCustomCerts#name
+     */
+    readonly name?: string;
+    /**
+     * One of ConfigMap or Secret
+     *
+     * @schema KnativeServingSpecControllerCustomCerts#type
+     */
+    readonly type?: KnativeServingSpecControllerCustomCertsType;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecControllerCustomCerts' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecControllerCustomCerts(obj: KnativeServingSpecControllerCustomCerts | undefined): Record<string, any> | undefined;
+/**
+ * Allows specification of HA control plane
+ *
+ * @schema KnativeServingSpecHighAvailability
+ */
+export interface KnativeServingSpecHighAvailability {
+    /**
+     * The number of replicas that HA parts of the control plane will be scaled to
+     *
+     * @schema KnativeServingSpecHighAvailability#replicas
+     */
+    readonly replicas?: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecHighAvailability' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecHighAvailability(obj: KnativeServingSpecHighAvailability | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecWorkloads
+ */
+export interface KnativeServingSpecWorkloads {
+    /**
+     * The name of the deployment
+     *
+     * @schema KnativeServingSpecWorkloads#name
+     */
+    readonly name?: string;
+    /**
+     * Labels overrides labels for the deployment and its template.
+     *
+     * @schema KnativeServingSpecWorkloads#labels
+     */
+    readonly labels?: {
+        [key: string]: string;
+    };
+    /**
+     * LivenessProbes overrides liveness probes for the containers.
+     *
+     * @schema KnativeServingSpecWorkloads#livenessProbes
+     */
+    readonly livenessProbes?: KnativeServingSpecWorkloadsLivenessProbes[];
+    /**
+     * Annotations overrides labels for the deployment and its template.
+     *
+     * @schema KnativeServingSpecWorkloads#annotations
+     */
+    readonly annotations?: {
+        [key: string]: string;
+    };
+    /**
+     * Env overrides env vars for the containers.
+     *
+     * @schema KnativeServingSpecWorkloads#env
+     */
+    readonly env?: KnativeServingSpecWorkloadsEnv[];
+    /**
+     * The number of replicas that HA parts of the control plane will be scaled to
+     *
+     * @schema KnativeServingSpecWorkloads#replicas
+     */
+    readonly replicas?: number;
+    /**
+     * NodeSelector overrides nodeSelector for the deployment.
+     *
+     * @schema KnativeServingSpecWorkloads#nodeSelector
+     */
+    readonly nodeSelector?: {
+        [key: string]: string;
+    };
+    /**
+     * ReadinessProbes overrides readiness probes for the containers.
+     *
+     * @schema KnativeServingSpecWorkloads#readinessProbes
+     */
+    readonly readinessProbes?: KnativeServingSpecWorkloadsReadinessProbes[];
+    /**
+     * If specified, the pod's tolerations.
+     *
+     * @schema KnativeServingSpecWorkloads#tolerations
+     */
+    readonly tolerations?: KnativeServingSpecWorkloadsTolerations[];
+    /**
+     * Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it. When hostNetwork is enabled, this will set dnsPolicy to ClusterFirstWithHostNet automatically.
+     *
+     * @schema KnativeServingSpecWorkloads#hostNetwork
+     */
+    readonly hostNetwork?: boolean;
+    /**
+     * If specified, the pod's topology spread constraints.
+     *
+     * @schema KnativeServingSpecWorkloads#topologySpreadConstraints
+     */
+    readonly topologySpreadConstraints?: KnativeServingSpecWorkloadsTopologySpreadConstraints[];
+    /**
+     * Version the cluster should be on.
+     *
+     * @schema KnativeServingSpecWorkloads#version
+     */
+    readonly version?: string;
+    /**
+     * VolumeMounts allows configuration of additional VolumeMounts on the output StatefulSet definition. VolumeMounts specified will be appended to other VolumeMounts in the alertmanager container, that are generated as a result of StorageSpec objects.
+     *
+     * @schema KnativeServingSpecWorkloads#volumeMounts
+     */
+    readonly volumeMounts?: KnativeServingSpecWorkloadsVolumeMounts[];
+    /**
+     * If specified, the pod's scheduling constraints.
+     *
+     * @schema KnativeServingSpecWorkloads#affinity
+     */
+    readonly affinity?: KnativeServingSpecWorkloadsAffinity;
+    /**
+     * If specified, the container's resources.
+     *
+     * @schema KnativeServingSpecWorkloads#resources
+     */
+    readonly resources?: KnativeServingSpecWorkloadsResources[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloads' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloads(obj: KnativeServingSpecWorkloads | undefined): Record<string, any> | undefined;
+/**
+ * A field of namespace name to override the labels and annotations
+ *
+ * @schema KnativeServingSpecNamespace
+ */
+export interface KnativeServingSpecNamespace {
+    /**
+     * Labels overrides labels for the namespace and its template.
+     *
+     * @schema KnativeServingSpecNamespace#labels
+     */
+    readonly labels?: {
+        [key: string]: string;
+    };
+    /**
+     * Annotations overrides labels for the namespace and its template.
+     *
+     * @schema KnativeServingSpecNamespace#annotations
+     */
+    readonly annotations?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecNamespace' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecNamespace(obj: KnativeServingSpecNamespace | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecDeployments
+ */
+export interface KnativeServingSpecDeployments {
+    /**
+     * The name of the deployment
+     *
+     * @schema KnativeServingSpecDeployments#name
+     */
+    readonly name?: string;
+    /**
+     * Labels overrides labels for the deployment and its template.
+     *
+     * @schema KnativeServingSpecDeployments#labels
+     */
+    readonly labels?: {
+        [key: string]: string;
+    };
+    /**
+     * Annotations overrides labels for the deployment and its template.
+     *
+     * @schema KnativeServingSpecDeployments#annotations
+     */
+    readonly annotations?: {
+        [key: string]: string;
+    };
+    /**
+     * Env overrides env vars for the containers.
+     *
+     * @schema KnativeServingSpecDeployments#env
+     */
+    readonly env?: KnativeServingSpecDeploymentsEnv[];
+    /**
+     * LivenessProbes overrides liveness probes for the containers.
+     *
+     * @schema KnativeServingSpecDeployments#livenessProbes
+     */
+    readonly livenessProbes?: KnativeServingSpecDeploymentsLivenessProbes[];
+    /**
+     * The number of replicas that HA parts of the control plane will be scaled to
+     *
+     * @schema KnativeServingSpecDeployments#replicas
+     */
+    readonly replicas?: number;
+    /**
+     * NodeSelector overrides nodeSelector for the deployment.
+     *
+     * @schema KnativeServingSpecDeployments#nodeSelector
+     */
+    readonly nodeSelector?: {
+        [key: string]: string;
+    };
+    /**
+     * ReadinessProbes overrides readiness probes for the containers.
+     *
+     * @schema KnativeServingSpecDeployments#readinessProbes
+     */
+    readonly readinessProbes?: KnativeServingSpecDeploymentsReadinessProbes[];
+    /**
+     * If specified, the pod's tolerations.
+     *
+     * @schema KnativeServingSpecDeployments#tolerations
+     */
+    readonly tolerations?: KnativeServingSpecDeploymentsTolerations[];
+    /**
+     * Use the host's network namespace if true. Make sure to understand the security implications if you want to enable it. When hostNetwork is enabled, this will set dnsPolicy to ClusterFirstWithHostNet automatically.
+     *
+     * @schema KnativeServingSpecDeployments#hostNetwork
+     */
+    readonly hostNetwork?: boolean;
+    /**
+     * If specified, the pod's topology spread constraints.
+     *
+     * @schema KnativeServingSpecDeployments#topologySpreadConstraints
+     */
+    readonly topologySpreadConstraints?: KnativeServingSpecDeploymentsTopologySpreadConstraints[];
+    /**
+     * If specified, the pod's scheduling constraints.
+     *
+     * @schema KnativeServingSpecDeployments#affinity
+     */
+    readonly affinity?: KnativeServingSpecDeploymentsAffinity;
+    /**
+     * If specified, the container's resources.
+     *
+     * @schema KnativeServingSpecDeployments#resources
+     */
+    readonly resources?: KnativeServingSpecDeploymentsResources[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeployments' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeployments(obj: KnativeServingSpecDeployments | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecServices
+ */
+export interface KnativeServingSpecServices {
+    /**
+     * The name of the service
+     *
+     * @schema KnativeServingSpecServices#name
+     */
+    readonly name?: string;
+    /**
+     * Labels overrides labels for the service
+     *
+     * @schema KnativeServingSpecServices#labels
+     */
+    readonly labels?: {
+        [key: string]: string;
+    };
+    /**
+     * Annotations overrides labels for the service
+     *
+     * @schema KnativeServingSpecServices#annotations
+     */
+    readonly annotations?: {
+        [key: string]: string;
+    };
+    /**
+     * Selector overrides selector for the service
+     *
+     * @schema KnativeServingSpecServices#selector
+     */
+    readonly selector?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecServices' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecServices(obj: KnativeServingSpecServices | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecPodDisruptionBudgets
+ */
+export interface KnativeServingSpecPodDisruptionBudgets {
+    /**
+     * The name of the podDisruptionBudget
+     *
+     * @schema KnativeServingSpecPodDisruptionBudgets#name
+     */
+    readonly name?: string;
+    /**
+     * An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying "100%".
+     *
+     * @schema KnativeServingSpecPodDisruptionBudgets#minAvailable
+     */
+    readonly minAvailable?: KnativeServingSpecPodDisruptionBudgetsMinAvailable;
+    /**
+     * An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable".
+     *
+     * @schema KnativeServingSpecPodDisruptionBudgets#maxUnavailable
+     */
+    readonly maxUnavailable?: KnativeServingSpecPodDisruptionBudgetsMaxUnavailable;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecPodDisruptionBudgets' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecPodDisruptionBudgets(obj: KnativeServingSpecPodDisruptionBudgets | undefined): Record<string, any> | undefined;
+/**
+ * The ingress configuration for Knative Serving
+ *
+ * @schema KnativeServingSpecIngress
+ */
+export interface KnativeServingSpecIngress {
+    /**
+     * Contour settings
+     *
+     * @schema KnativeServingSpecIngress#contour
+     */
+    readonly contour?: KnativeServingSpecIngressContour;
+    /**
+     * Istio settings
+     *
+     * @schema KnativeServingSpecIngress#istio
+     */
+    readonly istio?: KnativeServingSpecIngressIstio;
+    /**
+     * Kourier settings
+     *
+     * @schema KnativeServingSpecIngress#kourier
+     */
+    readonly kourier?: KnativeServingSpecIngressKourier;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngress' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngress(obj: KnativeServingSpecIngress | undefined): Record<string, any> | undefined;
+/**
+ * The security configuration for Knative Serving
+ *
+ * @schema KnativeServingSpecSecurity
+ */
+export interface KnativeServingSpecSecurity {
+    /**
+     * Security Guard settings
+     *
+     * @schema KnativeServingSpecSecurity#securityGuard
+     */
+    readonly securityGuard?: KnativeServingSpecSecuritySecurityGuard;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecSecurity' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecSecurity(obj: KnativeServingSpecSecurity | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecManifests
+ */
+export interface KnativeServingSpecManifests {
+    /**
+     * The link of the manifest URL
+     *
+     * @schema KnativeServingSpecManifests#URL
+     */
+    readonly url?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecManifests' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecManifests(obj: KnativeServingSpecManifests | undefined): Record<string, any> | undefined;
+/**
+ * A means to override the corresponding deployment images in the upstream. This affects both apps/v1.Deployment and caching.internal.knative.dev/v1alpha1.Image.
+ *
+ * @schema KnativeServingSpecRegistry
+ */
+export interface KnativeServingSpecRegistry {
+    /**
+     * The default image reference template to use for all knative images. Takes the form of example-registry.io/custom/path/${NAME}:custom-tag
+     *
+     * @schema KnativeServingSpecRegistry#default
+     */
+    readonly default?: string;
+    /**
+     * A list of secrets to be used when pulling the knative images. The secret must be created in the same namespace as the knative-serving deployments, and not the namespace of this resource.
+     *
+     * @schema KnativeServingSpecRegistry#imagePullSecrets
+     */
+    readonly imagePullSecrets?: KnativeServingSpecRegistryImagePullSecrets[];
+    /**
+     * A map of a container name or image name to the full image location of the individual knative image.
+     *
+     * @schema KnativeServingSpecRegistry#override
+     */
+    readonly override?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecRegistry' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecRegistry(obj: KnativeServingSpecRegistry | undefined): Record<string, any> | undefined;
+/**
+ * One of ConfigMap or Secret
+ *
+ * @schema KnativeServingSpecControllerCustomCertsType
+ */
+export declare enum KnativeServingSpecControllerCustomCertsType {
+    /** ConfigMap */
+    CONFIG_MAP = "ConfigMap",
+    /** Secret */
+    SECRET = "Secret"
+}
+/**
+ * ProbesRequirementsOverride enables the user to override any container's env vars.
+ *
+ * @schema KnativeServingSpecWorkloadsLivenessProbes
+ */
+export interface KnativeServingSpecWorkloadsLivenessProbes {
+    /**
+     * The container name
+     *
+     * @schema KnativeServingSpecWorkloadsLivenessProbes#container
+     */
+    readonly container: string;
+    /**
+     * Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+     *
+     * @default 3. Minimum value is 1.
+     * @schema KnativeServingSpecWorkloadsLivenessProbes#failureThreshold
+     */
+    readonly failureThreshold?: number;
+    /**
+     * Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * @schema KnativeServingSpecWorkloadsLivenessProbes#initialDelaySeconds
+     */
+    readonly initialDelaySeconds?: number;
+    /**
+     * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+     *
+     * @default 10 seconds. Minimum value is 1.
+     * @schema KnativeServingSpecWorkloadsLivenessProbes#periodSeconds
+     */
+    readonly periodSeconds?: number;
+    /**
+     * Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+     *
+     * @default 1. Must be 1 for liveness and startup. Minimum value is 1.
+     * @schema KnativeServingSpecWorkloadsLivenessProbes#successThreshold
+     */
+    readonly successThreshold?: number;
+    /**
+     * Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
+     *
+     * @schema KnativeServingSpecWorkloadsLivenessProbes#terminationGracePeriodSeconds
+     */
+    readonly terminationGracePeriodSeconds?: number;
+    /**
+     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * @default 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * @schema KnativeServingSpecWorkloadsLivenessProbes#timeoutSeconds
+     */
+    readonly timeoutSeconds?: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsLivenessProbes' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsLivenessProbes(obj: KnativeServingSpecWorkloadsLivenessProbes | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecWorkloadsEnv
+ */
+export interface KnativeServingSpecWorkloadsEnv {
+    /**
+     * The container name
+     *
+     * @schema KnativeServingSpecWorkloadsEnv#container
+     */
+    readonly container: string;
+    /**
+     * The desired EnvVarRequirements
+     *
+     * @schema KnativeServingSpecWorkloadsEnv#envVars
+     */
+    readonly envVars?: KnativeServingSpecWorkloadsEnvEnvVars[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsEnv' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsEnv(obj: KnativeServingSpecWorkloadsEnv | undefined): Record<string, any> | undefined;
+/**
+ * ProbesRequirementsOverride enables the user to override any container's env vars.
+ *
+ * @schema KnativeServingSpecWorkloadsReadinessProbes
+ */
+export interface KnativeServingSpecWorkloadsReadinessProbes {
+    /**
+     * The container name
+     *
+     * @schema KnativeServingSpecWorkloadsReadinessProbes#container
+     */
+    readonly container: string;
+    /**
+     * Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+     *
+     * @default 3. Minimum value is 1.
+     * @schema KnativeServingSpecWorkloadsReadinessProbes#failureThreshold
+     */
+    readonly failureThreshold?: number;
+    /**
+     * Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * @schema KnativeServingSpecWorkloadsReadinessProbes#initialDelaySeconds
+     */
+    readonly initialDelaySeconds?: number;
+    /**
+     * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+     *
+     * @default 10 seconds. Minimum value is 1.
+     * @schema KnativeServingSpecWorkloadsReadinessProbes#periodSeconds
+     */
+    readonly periodSeconds?: number;
+    /**
+     * Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+     *
+     * @default 1. Must be 1 for liveness and startup. Minimum value is 1.
+     * @schema KnativeServingSpecWorkloadsReadinessProbes#successThreshold
+     */
+    readonly successThreshold?: number;
+    /**
+     * Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
+     *
+     * @schema KnativeServingSpecWorkloadsReadinessProbes#terminationGracePeriodSeconds
+     */
+    readonly terminationGracePeriodSeconds?: number;
+    /**
+     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * @default 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * @schema KnativeServingSpecWorkloadsReadinessProbes#timeoutSeconds
+     */
+    readonly timeoutSeconds?: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsReadinessProbes' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsReadinessProbes(obj: KnativeServingSpecWorkloadsReadinessProbes | undefined): Record<string, any> | undefined;
+/**
+ * The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+ *
+ * @schema KnativeServingSpecWorkloadsTolerations
+ */
+export interface KnativeServingSpecWorkloadsTolerations {
+    /**
+     * Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+     *
+     * @schema KnativeServingSpecWorkloadsTolerations#effect
+     */
+    readonly effect?: string;
+    /**
+     * Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+     *
+     * @schema KnativeServingSpecWorkloadsTolerations#key
+     */
+    readonly key?: string;
+    /**
+     * Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+     *
+     * @default Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+     * @schema KnativeServingSpecWorkloadsTolerations#operator
+     */
+    readonly operator?: string;
+    /**
+     * TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+     *
+     * @schema KnativeServingSpecWorkloadsTolerations#tolerationSeconds
+     */
+    readonly tolerationSeconds?: number;
+    /**
+     * Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+     *
+     * @schema KnativeServingSpecWorkloadsTolerations#value
+     */
+    readonly value?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsTolerations' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsTolerations(obj: KnativeServingSpecWorkloadsTolerations | undefined): Record<string, any> | undefined;
+/**
+ * TopologySpreadConstraint specifies how to spread matching pods among the given topology.
+ *
+ * @schema KnativeServingSpecWorkloadsTopologySpreadConstraints
+ */
+export interface KnativeServingSpecWorkloadsTopologySpreadConstraints {
+    /**
+     * LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
+     *
+     * @schema KnativeServingSpecWorkloadsTopologySpreadConstraints#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelector;
+    /**
+     * MaxSkew describes the degree to which pods may be unevenly distributed. It's the maximum permitted difference between the number of matching pods in any two topology domains of a given topology type. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. It's a required field. Default value is 1 and 0 is not allowed.
+     *
+     * @schema KnativeServingSpecWorkloadsTopologySpreadConstraints#maxSkew
+     */
+    readonly maxSkew: number;
+    /**
+     * TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field.
+     *
+     * @schema KnativeServingSpecWorkloadsTopologySpreadConstraints#topologyKey
+     */
+    readonly topologyKey: string;
+    /**
+     * WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it - ScheduleAnyway tells the scheduler to still schedule it It's considered as "Unsatisfiable" if and only if placing incoming pod on any topology violates "MaxSkew". For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+     *
+     * @schema KnativeServingSpecWorkloadsTopologySpreadConstraints#whenUnsatisfiable
+     */
+    readonly whenUnsatisfiable: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsTopologySpreadConstraints' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsTopologySpreadConstraints(obj: KnativeServingSpecWorkloadsTopologySpreadConstraints | undefined): Record<string, any> | undefined;
+/**
+ * VolumeMount describes a mounting of a Volume within a container.
+ *
+ * @schema KnativeServingSpecWorkloadsVolumeMounts
+ */
+export interface KnativeServingSpecWorkloadsVolumeMounts {
+    /**
+     * Path within the container at which the volume should be mounted.  Must not contain ':'.
+     *
+     * @schema KnativeServingSpecWorkloadsVolumeMounts#mountPath
+     */
+    readonly mountPath: string;
+    /**
+     * mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.
+     *
+     * @schema KnativeServingSpecWorkloadsVolumeMounts#mountPropagation
+     */
+    readonly mountPropagation?: string;
+    /**
+     * This must match the Name of a Volume.
+     *
+     * @schema KnativeServingSpecWorkloadsVolumeMounts#name
+     */
+    readonly name: string;
+    /**
+     * Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.
+     *
+     * @default false.
+     * @schema KnativeServingSpecWorkloadsVolumeMounts#readOnly
+     */
+    readonly readOnly?: boolean;
+    /**
+     * Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root).
+     *
+     * @default volume's root).
+     * @schema KnativeServingSpecWorkloadsVolumeMounts#subPath
+     */
+    readonly subPath?: string;
+    /**
+     * Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to "" (volume's root). SubPathExpr and SubPath are mutually exclusive.
+     *
+     * @default volume's root). SubPathExpr and SubPath are mutually exclusive.
+     * @schema KnativeServingSpecWorkloadsVolumeMounts#subPathExpr
+     */
+    readonly subPathExpr?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsVolumeMounts' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsVolumeMounts(obj: KnativeServingSpecWorkloadsVolumeMounts | undefined): Record<string, any> | undefined;
+/**
+ * If specified, the pod's scheduling constraints.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinity
+ */
+export interface KnativeServingSpecWorkloadsAffinity {
+    /**
+     * Describes node affinity scheduling rules for the pod.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinity#nodeAffinity
+     */
+    readonly nodeAffinity?: KnativeServingSpecWorkloadsAffinityNodeAffinity;
+    /**
+     * Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).
+     *
+     * @schema KnativeServingSpecWorkloadsAffinity#podAffinity
+     */
+    readonly podAffinity?: KnativeServingSpecWorkloadsAffinityPodAffinity;
+    /**
+     * Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).
+     *
+     * @schema KnativeServingSpecWorkloadsAffinity#podAntiAffinity
+     */
+    readonly podAntiAffinity?: KnativeServingSpecWorkloadsAffinityPodAntiAffinity;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinity' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinity(obj: KnativeServingSpecWorkloadsAffinity | undefined): Record<string, any> | undefined;
+/**
+ * The pod this Resource is used to specify the requests and limits for a certain container based on the name.
+ *
+ * @schema KnativeServingSpecWorkloadsResources
+ */
+export interface KnativeServingSpecWorkloadsResources {
+    /**
+     * The name of the container
+     *
+     * @schema KnativeServingSpecWorkloadsResources#container
+     */
+    readonly container?: string;
+    /**
+     * @schema KnativeServingSpecWorkloadsResources#limits
+     */
+    readonly limits?: KnativeServingSpecWorkloadsResourcesLimits;
+    /**
+     * @schema KnativeServingSpecWorkloadsResources#requests
+     */
+    readonly requests?: KnativeServingSpecWorkloadsResourcesRequests;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsResources' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsResources(obj: KnativeServingSpecWorkloadsResources | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecDeploymentsEnv
+ */
+export interface KnativeServingSpecDeploymentsEnv {
+    /**
+     * The container name
+     *
+     * @schema KnativeServingSpecDeploymentsEnv#container
+     */
+    readonly container: string;
+    /**
+     * The desired EnvVarRequirements
+     *
+     * @schema KnativeServingSpecDeploymentsEnv#envVars
+     */
+    readonly envVars?: KnativeServingSpecDeploymentsEnvEnvVars[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsEnv' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsEnv(obj: KnativeServingSpecDeploymentsEnv | undefined): Record<string, any> | undefined;
+/**
+ * ProbesRequirementsOverride enables the user to override any container's env vars.
+ *
+ * @schema KnativeServingSpecDeploymentsLivenessProbes
+ */
+export interface KnativeServingSpecDeploymentsLivenessProbes {
+    /**
+     * The container name
+     *
+     * @schema KnativeServingSpecDeploymentsLivenessProbes#container
+     */
+    readonly container: string;
+    /**
+     * Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+     *
+     * @default 3. Minimum value is 1.
+     * @schema KnativeServingSpecDeploymentsLivenessProbes#failureThreshold
+     */
+    readonly failureThreshold?: number;
+    /**
+     * Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * @schema KnativeServingSpecDeploymentsLivenessProbes#initialDelaySeconds
+     */
+    readonly initialDelaySeconds?: number;
+    /**
+     * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+     *
+     * @default 10 seconds. Minimum value is 1.
+     * @schema KnativeServingSpecDeploymentsLivenessProbes#periodSeconds
+     */
+    readonly periodSeconds?: number;
+    /**
+     * Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+     *
+     * @default 1. Must be 1 for liveness and startup. Minimum value is 1.
+     * @schema KnativeServingSpecDeploymentsLivenessProbes#successThreshold
+     */
+    readonly successThreshold?: number;
+    /**
+     * Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
+     *
+     * @schema KnativeServingSpecDeploymentsLivenessProbes#terminationGracePeriodSeconds
+     */
+    readonly terminationGracePeriodSeconds?: number;
+    /**
+     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * @default 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * @schema KnativeServingSpecDeploymentsLivenessProbes#timeoutSeconds
+     */
+    readonly timeoutSeconds?: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsLivenessProbes' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsLivenessProbes(obj: KnativeServingSpecDeploymentsLivenessProbes | undefined): Record<string, any> | undefined;
+/**
+ * ProbesRequirementsOverride enables the user to override any container's env vars.
+ *
+ * @schema KnativeServingSpecDeploymentsReadinessProbes
+ */
+export interface KnativeServingSpecDeploymentsReadinessProbes {
+    /**
+     * The container name
+     *
+     * @schema KnativeServingSpecDeploymentsReadinessProbes#container
+     */
+    readonly container: string;
+    /**
+     * Minimum consecutive failures for the probe to be considered failed after having succeeded. Defaults to 3. Minimum value is 1.
+     *
+     * @default 3. Minimum value is 1.
+     * @schema KnativeServingSpecDeploymentsReadinessProbes#failureThreshold
+     */
+    readonly failureThreshold?: number;
+    /**
+     * Number of seconds after the container has started before liveness probes are initiated. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * @schema KnativeServingSpecDeploymentsReadinessProbes#initialDelaySeconds
+     */
+    readonly initialDelaySeconds?: number;
+    /**
+     * How often (in seconds) to perform the probe. Default to 10 seconds. Minimum value is 1.
+     *
+     * @default 10 seconds. Minimum value is 1.
+     * @schema KnativeServingSpecDeploymentsReadinessProbes#periodSeconds
+     */
+    readonly periodSeconds?: number;
+    /**
+     * Minimum consecutive successes for the probe to be considered successful after having failed. Defaults to 1. Must be 1 for liveness and startup. Minimum value is 1.
+     *
+     * @default 1. Must be 1 for liveness and startup. Minimum value is 1.
+     * @schema KnativeServingSpecDeploymentsReadinessProbes#successThreshold
+     */
+    readonly successThreshold?: number;
+    /**
+     * Optional duration in seconds the pod needs to terminate gracefully upon probe failure. The grace period is the duration in seconds after the processes running in the pod are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. If this value is nil, the pod's terminationGracePeriodSeconds will be used. Otherwise, this value overrides the value provided by the pod spec. Value must be non-negative integer. The value zero indicates stop immediately via the kill signal (no opportunity to shut down). This is a beta field and requires enabling ProbeTerminationGracePeriod feature gate. Minimum value is 1. spec.terminationGracePeriodSeconds is used if unset.
+     *
+     * @schema KnativeServingSpecDeploymentsReadinessProbes#terminationGracePeriodSeconds
+     */
+    readonly terminationGracePeriodSeconds?: number;
+    /**
+     * Number of seconds after which the probe times out. Defaults to 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * @default 1 second. Minimum value is 1. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     * @schema KnativeServingSpecDeploymentsReadinessProbes#timeoutSeconds
+     */
+    readonly timeoutSeconds?: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsReadinessProbes' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsReadinessProbes(obj: KnativeServingSpecDeploymentsReadinessProbes | undefined): Record<string, any> | undefined;
+/**
+ * The pod this Toleration is attached to tolerates any taint that matches the triple <key,value,effect> using the matching operator <operator>.
+ *
+ * @schema KnativeServingSpecDeploymentsTolerations
+ */
+export interface KnativeServingSpecDeploymentsTolerations {
+    /**
+     * Effect indicates the taint effect to match. Empty means match all taint effects. When specified, allowed values are NoSchedule, PreferNoSchedule and NoExecute.
+     *
+     * @schema KnativeServingSpecDeploymentsTolerations#effect
+     */
+    readonly effect?: string;
+    /**
+     * Key is the taint key that the toleration applies to. Empty means match all taint keys. If the key is empty, operator must be Exists; this combination means to match all values and all keys.
+     *
+     * @schema KnativeServingSpecDeploymentsTolerations#key
+     */
+    readonly key?: string;
+    /**
+     * Operator represents a key's relationship to the value. Valid operators are Exists and Equal. Defaults to Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+     *
+     * @default Equal. Exists is equivalent to wildcard for value, so that a pod can tolerate all taints of a particular category.
+     * @schema KnativeServingSpecDeploymentsTolerations#operator
+     */
+    readonly operator?: string;
+    /**
+     * TolerationSeconds represents the period of time the toleration (which must be of effect NoExecute, otherwise this field is ignored) tolerates the taint. By default, it is not set, which means tolerate the taint forever (do not evict). Zero and negative values will be treated as 0 (evict immediately) by the system.
+     *
+     * @schema KnativeServingSpecDeploymentsTolerations#tolerationSeconds
+     */
+    readonly tolerationSeconds?: number;
+    /**
+     * Value is the taint value the toleration matches to. If the operator is Exists, the value should be empty, otherwise just a regular string.
+     *
+     * @schema KnativeServingSpecDeploymentsTolerations#value
+     */
+    readonly value?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsTolerations' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsTolerations(obj: KnativeServingSpecDeploymentsTolerations | undefined): Record<string, any> | undefined;
+/**
+ * TopologySpreadConstraint specifies how to spread matching pods among the given topology.
+ *
+ * @schema KnativeServingSpecDeploymentsTopologySpreadConstraints
+ */
+export interface KnativeServingSpecDeploymentsTopologySpreadConstraints {
+    /**
+     * LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
+     *
+     * @schema KnativeServingSpecDeploymentsTopologySpreadConstraints#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelector;
+    /**
+     * MaxSkew describes the degree to which pods may be unevenly distributed. It's the maximum permitted difference between the number of matching pods in any two topology domains of a given topology type. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. It's a required field. Default value is 1 and 0 is not allowed.
+     *
+     * @schema KnativeServingSpecDeploymentsTopologySpreadConstraints#maxSkew
+     */
+    readonly maxSkew: number;
+    /**
+     * TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a "bucket", and try to put balanced number of pods into each bucket. It's a required field.
+     *
+     * @schema KnativeServingSpecDeploymentsTopologySpreadConstraints#topologyKey
+     */
+    readonly topologyKey: string;
+    /**
+     * WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it - ScheduleAnyway tells the scheduler to still schedule it It's considered as "Unsatisfiable" if and only if placing incoming pod on any topology violates "MaxSkew". For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.
+     *
+     * @schema KnativeServingSpecDeploymentsTopologySpreadConstraints#whenUnsatisfiable
+     */
+    readonly whenUnsatisfiable: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsTopologySpreadConstraints' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsTopologySpreadConstraints(obj: KnativeServingSpecDeploymentsTopologySpreadConstraints | undefined): Record<string, any> | undefined;
+/**
+ * If specified, the pod's scheduling constraints.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinity
+ */
+export interface KnativeServingSpecDeploymentsAffinity {
+    /**
+     * Describes node affinity scheduling rules for the pod.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinity#nodeAffinity
+     */
+    readonly nodeAffinity?: KnativeServingSpecDeploymentsAffinityNodeAffinity;
+    /**
+     * Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).
+     *
+     * @schema KnativeServingSpecDeploymentsAffinity#podAffinity
+     */
+    readonly podAffinity?: KnativeServingSpecDeploymentsAffinityPodAffinity;
+    /**
+     * Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).
+     *
+     * @schema KnativeServingSpecDeploymentsAffinity#podAntiAffinity
+     */
+    readonly podAntiAffinity?: KnativeServingSpecDeploymentsAffinityPodAntiAffinity;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinity' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinity(obj: KnativeServingSpecDeploymentsAffinity | undefined): Record<string, any> | undefined;
+/**
+ * The pod this Resource is used to specify the requests and limits for a certain container based on the name.
+ *
+ * @schema KnativeServingSpecDeploymentsResources
+ */
+export interface KnativeServingSpecDeploymentsResources {
+    /**
+     * The name of the container
+     *
+     * @schema KnativeServingSpecDeploymentsResources#container
+     */
+    readonly container?: string;
+    /**
+     * @schema KnativeServingSpecDeploymentsResources#limits
+     */
+    readonly limits?: KnativeServingSpecDeploymentsResourcesLimits;
+    /**
+     * @schema KnativeServingSpecDeploymentsResources#requests
+     */
+    readonly requests?: KnativeServingSpecDeploymentsResourcesRequests;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsResources' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsResources(obj: KnativeServingSpecDeploymentsResources | undefined): Record<string, any> | undefined;
+/**
+ * An eviction is allowed if at least "minAvailable" pods selected by "selector" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying "100%".
+ *
+ * @schema KnativeServingSpecPodDisruptionBudgetsMinAvailable
+ */
+export declare class KnativeServingSpecPodDisruptionBudgetsMinAvailable {
+    readonly value: number | string;
+    static fromNumber(value: number): KnativeServingSpecPodDisruptionBudgetsMinAvailable;
+    static fromString(value: string): KnativeServingSpecPodDisruptionBudgetsMinAvailable;
+    private constructor();
+}
+/**
+ * An eviction is allowed if at most "maxUnavailable" pods selected by "selector" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with "minAvailable".
+ *
+ * @schema KnativeServingSpecPodDisruptionBudgetsMaxUnavailable
+ */
+export declare class KnativeServingSpecPodDisruptionBudgetsMaxUnavailable {
+    readonly value: number | string;
+    static fromNumber(value: number): KnativeServingSpecPodDisruptionBudgetsMaxUnavailable;
+    static fromString(value: string): KnativeServingSpecPodDisruptionBudgetsMaxUnavailable;
+    private constructor();
+}
+/**
+ * Contour settings
+ *
+ * @schema KnativeServingSpecIngressContour
+ */
+export interface KnativeServingSpecIngressContour {
+    /**
+     * @schema KnativeServingSpecIngressContour#enabled
+     */
+    readonly enabled?: boolean;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressContour' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressContour(obj: KnativeServingSpecIngressContour | undefined): Record<string, any> | undefined;
+/**
+ * Istio settings
+ *
+ * @schema KnativeServingSpecIngressIstio
+ */
+export interface KnativeServingSpecIngressIstio {
+    /**
+     * @schema KnativeServingSpecIngressIstio#enabled
+     */
+    readonly enabled?: boolean;
+    /**
+     * A means to override the knative-ingress-gateway
+     *
+     * @schema KnativeServingSpecIngressIstio#knative-ingress-gateway
+     */
+    readonly knativeIngressGateway?: KnativeServingSpecIngressIstioKnativeIngressGateway;
+    /**
+     * A means to override the knative-local-gateway
+     *
+     * @schema KnativeServingSpecIngressIstio#knative-local-gateway
+     */
+    readonly knativeLocalGateway?: KnativeServingSpecIngressIstioKnativeLocalGateway;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressIstio' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressIstio(obj: KnativeServingSpecIngressIstio | undefined): Record<string, any> | undefined;
+/**
+ * Kourier settings
+ *
+ * @schema KnativeServingSpecIngressKourier
+ */
+export interface KnativeServingSpecIngressKourier {
+    /**
+     * @schema KnativeServingSpecIngressKourier#enabled
+     */
+    readonly enabled?: boolean;
+    /**
+     * @schema KnativeServingSpecIngressKourier#service-type
+     */
+    readonly serviceType?: string;
+    /**
+     * @schema KnativeServingSpecIngressKourier#service-load-balancer-ip
+     */
+    readonly serviceLoadBalancerIp?: string;
+    /**
+     * @schema KnativeServingSpecIngressKourier#bootstrap-configmap
+     */
+    readonly bootstrapConfigmap?: string;
+    /**
+     * @schema KnativeServingSpecIngressKourier#http-port
+     */
+    readonly httpPort?: number;
+    /**
+     * @schema KnativeServingSpecIngressKourier#https-port
+     */
+    readonly httpsPort?: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressKourier' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressKourier(obj: KnativeServingSpecIngressKourier | undefined): Record<string, any> | undefined;
+/**
+ * Security Guard settings
+ *
+ * @schema KnativeServingSpecSecuritySecurityGuard
+ */
+export interface KnativeServingSpecSecuritySecurityGuard {
+    /**
+     * @schema KnativeServingSpecSecuritySecurityGuard#enabled
+     */
+    readonly enabled?: boolean;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecSecuritySecurityGuard' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecSecuritySecurityGuard(obj: KnativeServingSpecSecuritySecurityGuard | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecRegistryImagePullSecrets
+ */
+export interface KnativeServingSpecRegistryImagePullSecrets {
+    /**
+     * The name of the secret.
+     *
+     * @schema KnativeServingSpecRegistryImagePullSecrets#name
+     */
+    readonly name?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecRegistryImagePullSecrets' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecRegistryImagePullSecrets(obj: KnativeServingSpecRegistryImagePullSecrets | undefined): Record<string, any> | undefined;
+/**
+ * EnvVar represents an environment variable present in a Container.
+ *
+ * @schema KnativeServingSpecWorkloadsEnvEnvVars
+ */
+export interface KnativeServingSpecWorkloadsEnvEnvVars {
+    /**
+     * Name of the environment variable. Must be a C_IDENTIFIER.
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVars#name
+     */
+    readonly name: string;
+    /**
+     * Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "".
+     *
+     * @default .
+     * @schema KnativeServingSpecWorkloadsEnvEnvVars#value
+     */
+    readonly value?: string;
+    /**
+     * Source for the environment variable's value. Cannot be used if value is not empty.
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVars#valueFrom
+     */
+    readonly valueFrom?: KnativeServingSpecWorkloadsEnvEnvVarsValueFrom;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsEnvEnvVars' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsEnvEnvVars(obj: KnativeServingSpecWorkloadsEnvEnvVars | undefined): Record<string, any> | undefined;
+/**
+ * LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
+ *
+ * @schema KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelector
+ */
+export interface KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelector(obj: KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * Describes node affinity scheduling rules for the pod.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityNodeAffinity
+ */
+export interface KnativeServingSpecWorkloadsAffinityNodeAffinity {
+    /**
+     * The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinity#preferredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly preferredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution[];
+    /**
+     * If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinity#requiredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly requiredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityNodeAffinity' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityNodeAffinity(obj: KnativeServingSpecWorkloadsAffinityNodeAffinity | undefined): Record<string, any> | undefined;
+/**
+ * Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAffinity
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAffinity {
+    /**
+     * The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinity#preferredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly preferredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution[];
+    /**
+     * If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinity#requiredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly requiredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAffinity' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAffinity(obj: KnativeServingSpecWorkloadsAffinityPodAffinity | undefined): Record<string, any> | undefined;
+/**
+ * Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinity
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAntiAffinity {
+    /**
+     * The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinity#preferredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly preferredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution[];
+    /**
+     * If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinity#requiredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly requiredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAntiAffinity' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAntiAffinity(obj: KnativeServingSpecWorkloadsAffinityPodAntiAffinity | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecWorkloadsResourcesLimits
+ */
+export interface KnativeServingSpecWorkloadsResourcesLimits {
+    /**
+     * @schema KnativeServingSpecWorkloadsResourcesLimits#cpu
+     */
+    readonly cpu?: string;
+    /**
+     * @schema KnativeServingSpecWorkloadsResourcesLimits#memory
+     */
+    readonly memory?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsResourcesLimits' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsResourcesLimits(obj: KnativeServingSpecWorkloadsResourcesLimits | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecWorkloadsResourcesRequests
+ */
+export interface KnativeServingSpecWorkloadsResourcesRequests {
+    /**
+     * @schema KnativeServingSpecWorkloadsResourcesRequests#cpu
+     */
+    readonly cpu?: string;
+    /**
+     * @schema KnativeServingSpecWorkloadsResourcesRequests#memory
+     */
+    readonly memory?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsResourcesRequests' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsResourcesRequests(obj: KnativeServingSpecWorkloadsResourcesRequests | undefined): Record<string, any> | undefined;
+/**
+ * EnvVar represents an environment variable present in a Container.
+ *
+ * @schema KnativeServingSpecDeploymentsEnvEnvVars
+ */
+export interface KnativeServingSpecDeploymentsEnvEnvVars {
+    /**
+     * Name of the environment variable. Must be a C_IDENTIFIER.
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVars#name
+     */
+    readonly name: string;
+    /**
+     * Variable references $(VAR_NAME) are expanded using the previously defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. Double $$ are reduced to a single $, which allows for escaping the $(VAR_NAME) syntax: i.e. "$$(VAR_NAME)" will produce the string literal "$(VAR_NAME)". Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "".
+     *
+     * @default .
+     * @schema KnativeServingSpecDeploymentsEnvEnvVars#value
+     */
+    readonly value?: string;
+    /**
+     * Source for the environment variable's value. Cannot be used if value is not empty.
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVars#valueFrom
+     */
+    readonly valueFrom?: KnativeServingSpecDeploymentsEnvEnvVarsValueFrom;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsEnvEnvVars' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsEnvEnvVars(obj: KnativeServingSpecDeploymentsEnvEnvVars | undefined): Record<string, any> | undefined;
+/**
+ * LabelSelector is used to find matching pods. Pods that match this label selector are counted to determine the number of pods in their corresponding topology domain.
+ *
+ * @schema KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelector
+ */
+export interface KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelector(obj: KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * Describes node affinity scheduling rules for the pod.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityNodeAffinity
+ */
+export interface KnativeServingSpecDeploymentsAffinityNodeAffinity {
+    /**
+     * The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node matches the corresponding matchExpressions; the node(s) with the highest sum are the most preferred.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinity#preferredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly preferredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution[];
+    /**
+     * If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinity#requiredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly requiredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityNodeAffinity' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityNodeAffinity(obj: KnativeServingSpecDeploymentsAffinityNodeAffinity | undefined): Record<string, any> | undefined;
+/**
+ * Describes pod affinity scheduling rules (e.g. co-locate this pod in the same node, zone, etc. as some other pod(s)).
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAffinity
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAffinity {
+    /**
+     * The scheduler will prefer to schedule pods to nodes that satisfy the affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinity#preferredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly preferredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution[];
+    /**
+     * If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinity#requiredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly requiredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAffinity' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAffinity(obj: KnativeServingSpecDeploymentsAffinityPodAffinity | undefined): Record<string, any> | undefined;
+/**
+ * Describes pod anti-affinity scheduling rules (e.g. avoid putting this pod in the same node, zone, etc. as some other pod(s)).
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinity
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAntiAffinity {
+    /**
+     * The scheduler will prefer to schedule pods to nodes that satisfy the anti-affinity expressions specified by this field, but it may choose a node that violates one or more of the expressions. The node that is most preferred is the one with the greatest sum of weights, i.e. for each node that meets all of the scheduling requirements (resource request, requiredDuringScheduling anti-affinity expressions, etc.), compute a sum by iterating through the elements of this field and adding "weight" to the sum if the node has pods which matches the corresponding podAffinityTerm; the node(s) with the highest sum are the most preferred.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinity#preferredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly preferredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution[];
+    /**
+     * If the anti-affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the anti-affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to a pod label update), the system may or may not try to eventually evict the pod from its node. When there are multiple elements, the lists of nodes corresponding to each podAffinityTerm are intersected, i.e. all terms must be satisfied.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinity#requiredDuringSchedulingIgnoredDuringExecution
+     */
+    readonly requiredDuringSchedulingIgnoredDuringExecution?: KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAntiAffinity' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAntiAffinity(obj: KnativeServingSpecDeploymentsAffinityPodAntiAffinity | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecDeploymentsResourcesLimits
+ */
+export interface KnativeServingSpecDeploymentsResourcesLimits {
+    /**
+     * @schema KnativeServingSpecDeploymentsResourcesLimits#cpu
+     */
+    readonly cpu?: string;
+    /**
+     * @schema KnativeServingSpecDeploymentsResourcesLimits#memory
+     */
+    readonly memory?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsResourcesLimits' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsResourcesLimits(obj: KnativeServingSpecDeploymentsResourcesLimits | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecDeploymentsResourcesRequests
+ */
+export interface KnativeServingSpecDeploymentsResourcesRequests {
+    /**
+     * @schema KnativeServingSpecDeploymentsResourcesRequests#cpu
+     */
+    readonly cpu?: string;
+    /**
+     * @schema KnativeServingSpecDeploymentsResourcesRequests#memory
+     */
+    readonly memory?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsResourcesRequests' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsResourcesRequests(obj: KnativeServingSpecDeploymentsResourcesRequests | undefined): Record<string, any> | undefined;
+/**
+ * A means to override the knative-ingress-gateway
+ *
+ * @schema KnativeServingSpecIngressIstioKnativeIngressGateway
+ */
+export interface KnativeServingSpecIngressIstioKnativeIngressGateway {
+    /**
+     * The selector for the ingress-gateway.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGateway#selector
+     */
+    readonly selector?: {
+        [key: string]: string;
+    };
+    /**
+     * A list of server specifications.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGateway#servers
+     */
+    readonly servers?: KnativeServingSpecIngressIstioKnativeIngressGatewayServers[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressIstioKnativeIngressGateway' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressIstioKnativeIngressGateway(obj: KnativeServingSpecIngressIstioKnativeIngressGateway | undefined): Record<string, any> | undefined;
+/**
+ * A means to override the knative-local-gateway
+ *
+ * @schema KnativeServingSpecIngressIstioKnativeLocalGateway
+ */
+export interface KnativeServingSpecIngressIstioKnativeLocalGateway {
+    /**
+     * The selector for the ingress-gateway.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGateway#selector
+     */
+    readonly selector?: {
+        [key: string]: string;
+    };
+    /**
+     * A list of server specifications.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGateway#servers
+     */
+    readonly servers?: KnativeServingSpecIngressIstioKnativeLocalGatewayServers[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressIstioKnativeLocalGateway' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressIstioKnativeLocalGateway(obj: KnativeServingSpecIngressIstioKnativeLocalGateway | undefined): Record<string, any> | undefined;
+/**
+ * Source for the environment variable's value. Cannot be used if value is not empty.
+ *
+ * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFrom
+ */
+export interface KnativeServingSpecWorkloadsEnvEnvVarsValueFrom {
+    /**
+     * Selects a key of a ConfigMap.
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFrom#configMapKeyRef
+     */
+    readonly configMapKeyRef?: KnativeServingSpecWorkloadsEnvEnvVarsValueFromConfigMapKeyRef;
+    /**
+     * Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFrom#fieldRef
+     */
+    readonly fieldRef?: KnativeServingSpecWorkloadsEnvEnvVarsValueFromFieldRef;
+    /**
+     * Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFrom#resourceFieldRef
+     */
+    readonly resourceFieldRef?: KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRef;
+    /**
+     * Selects a key of a secret in the pod's namespace
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFrom#secretKeyRef
+     */
+    readonly secretKeyRef?: KnativeServingSpecWorkloadsEnvEnvVarsValueFromSecretKeyRef;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsEnvEnvVarsValueFrom' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsEnvEnvVarsValueFrom(obj: KnativeServingSpecWorkloadsEnvEnvVarsValueFrom | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelectorMatchExpressions(obj: KnativeServingSpecWorkloadsTopologySpreadConstraintsLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * An empty preferred scheduling term matches all objects with implicit weight 0 (i.e. it's a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op).
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * A node selector term, associated with the corresponding weight.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution#preference
+     */
+    readonly preference: KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference;
+    /**
+     * Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution#weight
+     */
+    readonly weight: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * Required. A list of node selector terms. The terms are ORed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution#nodeSelectorTerms
+     */
+    readonly nodeSelectorTerms: KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * Required. A pod affinity term, associated with the corresponding weight.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution#podAffinityTerm
+     */
+    readonly podAffinityTerm: KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm;
+    /**
+     * weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution#weight
+     */
+    readonly weight: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * A label query over a set of resources, in this case pods.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector;
+    /**
+     * namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution#namespaces
+     */
+    readonly namespaces?: string[];
+    /**
+     * This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution#topologyKey
+     */
+    readonly topologyKey: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * Required. A pod affinity term, associated with the corresponding weight.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution#podAffinityTerm
+     */
+    readonly podAffinityTerm: KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm;
+    /**
+     * weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution#weight
+     */
+    readonly weight: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * A label query over a set of resources, in this case pods.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector;
+    /**
+     * namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution#namespaces
+     */
+    readonly namespaces?: string[];
+    /**
+     * This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution#topologyKey
+     */
+    readonly topologyKey: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * Source for the environment variable's value. Cannot be used if value is not empty.
+ *
+ * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFrom
+ */
+export interface KnativeServingSpecDeploymentsEnvEnvVarsValueFrom {
+    /**
+     * Selects a key of a ConfigMap.
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFrom#configMapKeyRef
+     */
+    readonly configMapKeyRef?: KnativeServingSpecDeploymentsEnvEnvVarsValueFromConfigMapKeyRef;
+    /**
+     * Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFrom#fieldRef
+     */
+    readonly fieldRef?: KnativeServingSpecDeploymentsEnvEnvVarsValueFromFieldRef;
+    /**
+     * Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFrom#resourceFieldRef
+     */
+    readonly resourceFieldRef?: KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRef;
+    /**
+     * Selects a key of a secret in the pod's namespace
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFrom#secretKeyRef
+     */
+    readonly secretKeyRef?: KnativeServingSpecDeploymentsEnvEnvVarsValueFromSecretKeyRef;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsEnvEnvVarsValueFrom' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsEnvEnvVarsValueFrom(obj: KnativeServingSpecDeploymentsEnvEnvVarsValueFrom | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelectorMatchExpressions(obj: KnativeServingSpecDeploymentsTopologySpreadConstraintsLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * An empty preferred scheduling term matches all objects with implicit weight 0 (i.e. it's a no-op). A null preferred scheduling term matches no objects (i.e. is also a no-op).
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * A node selector term, associated with the corresponding weight.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution#preference
+     */
+    readonly preference: KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference;
+    /**
+     * Weight associated with matching the corresponding nodeSelectorTerm, in the range 1-100.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution#weight
+     */
+    readonly weight: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * If the affinity requirements specified by this field are not met at scheduling time, the pod will not be scheduled onto the node. If the affinity requirements specified by this field cease to be met at some point during pod execution (e.g. due to an update), the system may or may not try to eventually evict the pod from its node.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * Required. A list of node selector terms. The terms are ORed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution#nodeSelectorTerms
+     */
+    readonly nodeSelectorTerms: KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * Required. A pod affinity term, associated with the corresponding weight.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution#podAffinityTerm
+     */
+    readonly podAffinityTerm: KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm;
+    /**
+     * weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution#weight
+     */
+    readonly weight: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * A label query over a set of resources, in this case pods.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector;
+    /**
+     * namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution#namespaces
+     */
+    readonly namespaces?: string[];
+    /**
+     * This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution#topologyKey
+     */
+    readonly topologyKey: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * Required. A pod affinity term, associated with the corresponding weight.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution#podAffinityTerm
+     */
+    readonly podAffinityTerm: KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm;
+    /**
+     * weight associated with matching the corresponding podAffinityTerm, in the range 1-100.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution#weight
+     */
+    readonly weight: number;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * Defines a set of pods (namely those matching the labelSelector relative to the given namespace(s)) that this pod should be co-located (affinity) or not co-located (anti-affinity) with, where co-located is defined as running on a node whose value of the label with key <topologyKey> matches that of any node on which a pod of the set of pods is running
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution {
+    /**
+     * A label query over a set of resources, in this case pods.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector;
+    /**
+     * namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution#namespaces
+     */
+    readonly namespaces?: string[];
+    /**
+     * This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution#topologyKey
+     */
+    readonly topologyKey: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution(obj: KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecution | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServers
+ */
+export interface KnativeServingSpecIngressIstioKnativeIngressGatewayServers {
+    /**
+     * One or more hosts exposed by this gateway.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServers#hosts
+     */
+    readonly hosts?: string[];
+    /**
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServers#port
+     */
+    readonly port?: KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort;
+    /**
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServers#tls
+     */
+    readonly tls?: KnativeServingSpecIngressIstioKnativeIngressGatewayServersTls;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressIstioKnativeIngressGatewayServers' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressIstioKnativeIngressGatewayServers(obj: KnativeServingSpecIngressIstioKnativeIngressGatewayServers | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServers
+ */
+export interface KnativeServingSpecIngressIstioKnativeLocalGatewayServers {
+    /**
+     * One or more hosts exposed by this gateway.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServers#hosts
+     */
+    readonly hosts?: string[];
+    /**
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServers#port
+     */
+    readonly port?: KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort;
+    /**
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServers#tls
+     */
+    readonly tls?: KnativeServingSpecIngressIstioKnativeLocalGatewayServersTls;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressIstioKnativeLocalGatewayServers' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressIstioKnativeLocalGatewayServers(obj: KnativeServingSpecIngressIstioKnativeLocalGatewayServers | undefined): Record<string, any> | undefined;
+/**
+ * Selects a key of a ConfigMap.
+ *
+ * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromConfigMapKeyRef
+ */
+export interface KnativeServingSpecWorkloadsEnvEnvVarsValueFromConfigMapKeyRef {
+    /**
+     * The key to select.
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromConfigMapKeyRef#key
+     */
+    readonly key: string;
+    /**
+     * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromConfigMapKeyRef#name
+     */
+    readonly name?: string;
+    /**
+     * Specify whether the ConfigMap or its key must be defined
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromConfigMapKeyRef#optional
+     */
+    readonly optional?: boolean;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsEnvEnvVarsValueFromConfigMapKeyRef' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsEnvEnvVarsValueFromConfigMapKeyRef(obj: KnativeServingSpecWorkloadsEnvEnvVarsValueFromConfigMapKeyRef | undefined): Record<string, any> | undefined;
+/**
+ * Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.
+ *
+ * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromFieldRef
+ */
+export interface KnativeServingSpecWorkloadsEnvEnvVarsValueFromFieldRef {
+    /**
+     * Version of the schema the FieldPath is written in terms of, defaults to "v1".
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromFieldRef#apiVersion
+     */
+    readonly apiVersion?: string;
+    /**
+     * Path of the field to select in the specified API version.
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromFieldRef#fieldPath
+     */
+    readonly fieldPath: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsEnvEnvVarsValueFromFieldRef' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsEnvEnvVarsValueFromFieldRef(obj: KnativeServingSpecWorkloadsEnvEnvVarsValueFromFieldRef | undefined): Record<string, any> | undefined;
+/**
+ * Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.
+ *
+ * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRef
+ */
+export interface KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRef {
+    /**
+     * Container name: required for volumes, optional for env vars
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRef#containerName
+     */
+    readonly containerName?: string;
+    /**
+     * Specifies the output format of the exposed resources, defaults to "1"
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRef#divisor
+     */
+    readonly divisor?: KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRefDivisor;
+    /**
+     * Required: resource to select
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRef#resource
+     */
+    readonly resource: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRef' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRef(obj: KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRef | undefined): Record<string, any> | undefined;
+/**
+ * Selects a key of a secret in the pod's namespace
+ *
+ * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromSecretKeyRef
+ */
+export interface KnativeServingSpecWorkloadsEnvEnvVarsValueFromSecretKeyRef {
+    /**
+     * The key of the secret to select from.  Must be a valid secret key.
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromSecretKeyRef#key
+     */
+    readonly key: string;
+    /**
+     * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromSecretKeyRef#name
+     */
+    readonly name?: string;
+    /**
+     * Specify whether the Secret or its key must be defined
+     *
+     * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromSecretKeyRef#optional
+     */
+    readonly optional?: boolean;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsEnvEnvVarsValueFromSecretKeyRef' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsEnvEnvVarsValueFromSecretKeyRef(obj: KnativeServingSpecWorkloadsEnvEnvVarsValueFromSecretKeyRef | undefined): Record<string, any> | undefined;
+/**
+ * A node selector term, associated with the corresponding weight.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference
+ */
+export interface KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference {
+    /**
+     * A list of node selector requirements by node's labels.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions[];
+    /**
+     * A list of node selector requirements by node's fields.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference#matchFields
+     */
+    readonly matchFields?: KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference(obj: KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference | undefined): Record<string, any> | undefined;
+/**
+ * A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms
+ */
+export interface KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms {
+    /**
+     * A list of node selector requirements by node's labels.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions[];
+    /**
+     * A list of node selector requirements by node's fields.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms#matchFields
+     */
+    readonly matchFields?: KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms(obj: KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms | undefined): Record<string, any> | undefined;
+/**
+ * Required. A pod affinity term, associated with the corresponding weight.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm {
+    /**
+     * A label query over a set of resources, in this case pods.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector;
+    /**
+     * namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#namespaces
+     */
+    readonly namespaces?: string[];
+    /**
+     * This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#topologyKey
+     */
+    readonly topologyKey: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm(obj: KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm | undefined): Record<string, any> | undefined;
+/**
+ * A label query over a set of resources, in this case pods.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector(obj: KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * Required. A pod affinity term, associated with the corresponding weight.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm {
+    /**
+     * A label query over a set of resources, in this case pods.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector;
+    /**
+     * namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#namespaces
+     */
+    readonly namespaces?: string[];
+    /**
+     * This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#topologyKey
+     */
+    readonly topologyKey: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm(obj: KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm | undefined): Record<string, any> | undefined;
+/**
+ * A label query over a set of resources, in this case pods.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector(obj: KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * Selects a key of a ConfigMap.
+ *
+ * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromConfigMapKeyRef
+ */
+export interface KnativeServingSpecDeploymentsEnvEnvVarsValueFromConfigMapKeyRef {
+    /**
+     * The key to select.
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromConfigMapKeyRef#key
+     */
+    readonly key: string;
+    /**
+     * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromConfigMapKeyRef#name
+     */
+    readonly name?: string;
+    /**
+     * Specify whether the ConfigMap or its key must be defined
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromConfigMapKeyRef#optional
+     */
+    readonly optional?: boolean;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsEnvEnvVarsValueFromConfigMapKeyRef' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsEnvEnvVarsValueFromConfigMapKeyRef(obj: KnativeServingSpecDeploymentsEnvEnvVarsValueFromConfigMapKeyRef | undefined): Record<string, any> | undefined;
+/**
+ * Selects a field of the pod: supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.
+ *
+ * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromFieldRef
+ */
+export interface KnativeServingSpecDeploymentsEnvEnvVarsValueFromFieldRef {
+    /**
+     * Version of the schema the FieldPath is written in terms of, defaults to "v1".
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromFieldRef#apiVersion
+     */
+    readonly apiVersion?: string;
+    /**
+     * Path of the field to select in the specified API version.
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromFieldRef#fieldPath
+     */
+    readonly fieldPath: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsEnvEnvVarsValueFromFieldRef' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsEnvEnvVarsValueFromFieldRef(obj: KnativeServingSpecDeploymentsEnvEnvVarsValueFromFieldRef | undefined): Record<string, any> | undefined;
+/**
+ * Selects a resource of the container: only resources limits and requests (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.
+ *
+ * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRef
+ */
+export interface KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRef {
+    /**
+     * Container name: required for volumes, optional for env vars
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRef#containerName
+     */
+    readonly containerName?: string;
+    /**
+     * Specifies the output format of the exposed resources, defaults to "1"
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRef#divisor
+     */
+    readonly divisor?: KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRefDivisor;
+    /**
+     * Required: resource to select
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRef#resource
+     */
+    readonly resource: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRef' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRef(obj: KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRef | undefined): Record<string, any> | undefined;
+/**
+ * Selects a key of a secret in the pod's namespace
+ *
+ * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromSecretKeyRef
+ */
+export interface KnativeServingSpecDeploymentsEnvEnvVarsValueFromSecretKeyRef {
+    /**
+     * The key of the secret to select from.  Must be a valid secret key.
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromSecretKeyRef#key
+     */
+    readonly key: string;
+    /**
+     * Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names TODO: Add other useful fields. apiVersion, kind, uid?
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromSecretKeyRef#name
+     */
+    readonly name?: string;
+    /**
+     * Specify whether the Secret or its key must be defined
+     *
+     * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromSecretKeyRef#optional
+     */
+    readonly optional?: boolean;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsEnvEnvVarsValueFromSecretKeyRef' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsEnvEnvVarsValueFromSecretKeyRef(obj: KnativeServingSpecDeploymentsEnvEnvVarsValueFromSecretKeyRef | undefined): Record<string, any> | undefined;
+/**
+ * A node selector term, associated with the corresponding weight.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference
+ */
+export interface KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference {
+    /**
+     * A list of node selector requirements by node's labels.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions[];
+    /**
+     * A list of node selector requirements by node's fields.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference#matchFields
+     */
+    readonly matchFields?: KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference(obj: KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreference | undefined): Record<string, any> | undefined;
+/**
+ * A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms
+ */
+export interface KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms {
+    /**
+     * A list of node selector requirements by node's labels.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions[];
+    /**
+     * A list of node selector requirements by node's fields.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms#matchFields
+     */
+    readonly matchFields?: KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms(obj: KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTerms | undefined): Record<string, any> | undefined;
+/**
+ * Required. A pod affinity term, associated with the corresponding weight.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm {
+    /**
+     * A label query over a set of resources, in this case pods.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector;
+    /**
+     * namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#namespaces
+     */
+    readonly namespaces?: string[];
+    /**
+     * This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#topologyKey
+     */
+    readonly topologyKey: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm(obj: KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm | undefined): Record<string, any> | undefined;
+/**
+ * A label query over a set of resources, in this case pods.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector(obj: KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * Required. A pod affinity term, associated with the corresponding weight.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm {
+    /**
+     * A label query over a set of resources, in this case pods.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#labelSelector
+     */
+    readonly labelSelector?: KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector;
+    /**
+     * namespaces specifies which namespaces the labelSelector applies to (matches against); null or empty list means "this pod's namespace"
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#namespaces
+     */
+    readonly namespaces?: string[];
+    /**
+     * This pod should be co-located (affinity) or not co-located (anti-affinity) with the pods matching the labelSelector in the specified namespaces, where co-located is defined as running on a node whose value of the label with key topologyKey matches that of any node on which any of the selected pods is running. Empty topologyKey is not allowed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm#topologyKey
+     */
+    readonly topologyKey: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm(obj: KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTerm | undefined): Record<string, any> | undefined;
+/**
+ * A label query over a set of resources, in this case pods.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector(obj: KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort
+ */
+export interface KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort {
+    /**
+     * Label assigned to the port.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort#name
+     */
+    readonly name?: string;
+    /**
+     * A valid non-negative integer port number.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort#number
+     */
+    readonly number?: number;
+    /**
+     * A valid non-negative integer target port number.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort#target_port
+     */
+    readonly targetPort?: number;
+    /**
+     * The protocol exposed on the port.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort#protocol
+     */
+    readonly protocol?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort(obj: KnativeServingSpecIngressIstioKnativeIngressGatewayServersPort | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServersTls
+ */
+export interface KnativeServingSpecIngressIstioKnativeIngressGatewayServersTls {
+    /**
+     * TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServersTls#mode
+     */
+    readonly mode?: string;
+    /**
+     * TLS certificate name.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServersTls#credentialName
+     */
+    readonly credentialName?: string;
+    /**
+     * If set to true, the load balancer will send a 301 redirect to HTTPS for all HTTP requests. Should be used only for HTTP listener, is mutually exclusive with all other TLS options.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeIngressGatewayServersTls#httpsRedirect
+     */
+    readonly httpsRedirect?: boolean;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressIstioKnativeIngressGatewayServersTls' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressIstioKnativeIngressGatewayServersTls(obj: KnativeServingSpecIngressIstioKnativeIngressGatewayServersTls | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort
+ */
+export interface KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort {
+    /**
+     * Label assigned to the port.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort#name
+     */
+    readonly name?: string;
+    /**
+     * A valid non-negative integer port number.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort#number
+     */
+    readonly number?: number;
+    /**
+     * A valid non-negative integer target port number.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort#target_port
+     */
+    readonly targetPort?: number;
+    /**
+     * The protocol exposed on the port.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort#protocol
+     */
+    readonly protocol?: string;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort(obj: KnativeServingSpecIngressIstioKnativeLocalGatewayServersPort | undefined): Record<string, any> | undefined;
+/**
+ * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServersTls
+ */
+export interface KnativeServingSpecIngressIstioKnativeLocalGatewayServersTls {
+    /**
+     * TLS mode can be SIMPLE, MUTUAL, ISTIO_MUTUAL.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServersTls#mode
+     */
+    readonly mode?: string;
+    /**
+     * TLS certificate name.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServersTls#credentialName
+     */
+    readonly credentialName?: string;
+    /**
+     * If set to true, the load balancer will send a 301 redirect to HTTPS for all HTTP requests. Should be used only for HTTP listener, is mutually exclusive with all other TLS options.
+     *
+     * @schema KnativeServingSpecIngressIstioKnativeLocalGatewayServersTls#httpsRedirect
+     */
+    readonly httpsRedirect?: boolean;
+}
+/**
+ * Converts an object of type 'KnativeServingSpecIngressIstioKnativeLocalGatewayServersTls' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecIngressIstioKnativeLocalGatewayServersTls(obj: KnativeServingSpecIngressIstioKnativeLocalGatewayServersTls | undefined): Record<string, any> | undefined;
+/**
+ * Specifies the output format of the exposed resources, defaults to "1"
+ *
+ * @schema KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRefDivisor
+ */
+export declare class KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRefDivisor {
+    readonly value: number | string;
+    static fromNumber(value: number): KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRefDivisor;
+    static fromString(value: string): KnativeServingSpecWorkloadsEnvEnvVarsValueFromResourceFieldRefDivisor;
+    private constructor();
+}
+/**
+ * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions
+ */
+export interface KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions {
+    /**
+     * The label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions(obj: KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields
+ */
+export interface KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields {
+    /**
+     * The label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields#key
+     */
+    readonly key: string;
+    /**
+     * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields#operator
+     */
+    readonly operator: string;
+    /**
+     * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields(obj: KnativeServingSpecWorkloadsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields | undefined): Record<string, any> | undefined;
+/**
+ * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions
+ */
+export interface KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions {
+    /**
+     * The label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions(obj: KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields
+ */
+export interface KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields {
+    /**
+     * The label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields#key
+     */
+    readonly key: string;
+    /**
+     * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields#operator
+     */
+    readonly operator: string;
+    /**
+     * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields(obj: KnativeServingSpecWorkloadsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields | undefined): Record<string, any> | undefined;
+/**
+ * A label query over a set of resources, in this case pods.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector(obj: KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions(obj: KnativeServingSpecWorkloadsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A label query over a set of resources, in this case pods.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector(obj: KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions(obj: KnativeServingSpecWorkloadsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * Specifies the output format of the exposed resources, defaults to "1"
+ *
+ * @schema KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRefDivisor
+ */
+export declare class KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRefDivisor {
+    readonly value: number | string;
+    static fromNumber(value: number): KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRefDivisor;
+    static fromString(value: string): KnativeServingSpecDeploymentsEnvEnvVarsValueFromResourceFieldRefDivisor;
+    private constructor();
+}
+/**
+ * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions
+ */
+export interface KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions {
+    /**
+     * The label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions(obj: KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields
+ */
+export interface KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields {
+    /**
+     * The label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields#key
+     */
+    readonly key: string;
+    /**
+     * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields#operator
+     */
+    readonly operator: string;
+    /**
+     * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields(obj: KnativeServingSpecDeploymentsAffinityNodeAffinityPreferredDuringSchedulingIgnoredDuringExecutionPreferenceMatchFields | undefined): Record<string, any> | undefined;
+/**
+ * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions
+ */
+export interface KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions {
+    /**
+     * The label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions(obj: KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A node selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields
+ */
+export interface KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields {
+    /**
+     * The label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields#key
+     */
+    readonly key: string;
+    /**
+     * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields#operator
+     */
+    readonly operator: string;
+    /**
+     * An array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. If the operator is Gt or Lt, the values array must have a single element, which will be interpreted as an integer. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields(obj: KnativeServingSpecDeploymentsAffinityNodeAffinityRequiredDuringSchedulingIgnoredDuringExecutionNodeSelectorTermsMatchFields | undefined): Record<string, any> | undefined;
+/**
+ * A label query over a set of resources, in this case pods.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector(obj: KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions(obj: KnativeServingSpecDeploymentsAffinityPodAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A label query over a set of resources, in this case pods.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector {
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector#matchExpressions
+     */
+    readonly matchExpressions?: KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an element of matchExpressions, whose key field is "key", the operator is "In", and the values array contains only "value". The requirements are ANDed.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector#matchLabels
+     */
+    readonly matchLabels?: {
+        [key: string]: string;
+    };
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector(obj: KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelector | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions(obj: KnativeServingSpecDeploymentsAffinityPodAntiAffinityRequiredDuringSchedulingIgnoredDuringExecutionLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions(obj: KnativeServingSpecWorkloadsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions(obj: KnativeServingSpecWorkloadsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions(obj: KnativeServingSpecDeploymentsAffinityPodAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;
+/**
+ * A label selector requirement is a selector that contains values, a key, and an operator that relates the key and values.
+ *
+ * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions
+ */
+export interface KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions {
+    /**
+     * key is the label key that the selector applies to.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#key
+     */
+    readonly key: string;
+    /**
+     * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#operator
+     */
+    readonly operator: string;
+    /**
+     * values is an array of string values. If the operator is In or NotIn, the values array must be non-empty. If the operator is Exists or DoesNotExist, the values array must be empty. This array is replaced during a strategic merge patch.
+     *
+     * @schema KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions#values
+     */
+    readonly values?: string[];
+}
+/**
+ * Converts an object of type 'KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions' to JSON representation.
+ */
+export declare function toJson_KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions(obj: KnativeServingSpecDeploymentsAffinityPodAntiAffinityPreferredDuringSchedulingIgnoredDuringExecutionPodAffinityTermLabelSelectorMatchExpressions | undefined): Record<string, any> | undefined;

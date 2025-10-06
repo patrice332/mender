@@ -101,6 +101,38 @@ importers:
         specifier: 2.201.44
         version: 2.201.44
 
+  pkg/third_party/knative/operator:
+    dependencies:
+      cdk8s:
+        specifier: 2.70.19
+        version: 2.70.19(constructs@10.4.2)
+      constructs:
+        specifier: 10.4.2
+        version: 10.4.2
+    devDependencies:
+      '@pkg/configs':
+        specifier: workspace:*
+        version: link:../../../configs
+      cdk8s-cli:
+        specifier: 2.201.44
+        version: 2.201.44
+
+  pkg/third_party/knative/serving:
+    dependencies:
+      cdk8s:
+        specifier: 2.70.19
+        version: 2.70.19(constructs@10.4.2)
+      constructs:
+        specifier: 10.4.2
+        version: 10.4.2
+    devDependencies:
+      '@pkg/configs':
+        specifier: workspace:*
+        version: link:../../../configs
+      cdk8s-cli:
+        specifier: 2.201.44
+        version: 2.201.44
+
 packages:
 
   '@babel/code-frame@7.27.1':
